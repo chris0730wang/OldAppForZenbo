@@ -6,12 +6,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pay extends LitePalSupport implements Serializable {
+public class Student extends LitePalSupport implements Serializable {
     private int year,month,day;
     private String name;
     private double money;
+    private String group;
+    private int Firstweekcheck, Secondweekcheck, Thirdweekcheck, Forthweekcheck;
     private boolean isPrivate;
-    private long id;
+    private String id;
     private boolean uploaded;
 
     public boolean isUploaded() {
@@ -22,11 +24,11 @@ public class Pay extends LitePalSupport implements Serializable {
         this.uploaded = uploaded;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -78,24 +80,33 @@ public class Pay extends LitePalSupport implements Serializable {
         isPrivate = aPrivate;
     }
 
+    public void setGroup(String group){
+        this.group = group;
+    }
+
+    public void setCheck(int firstweekcheck, int secondweekcheck, int thirdweekcheck, int forthweekcheck){
+        this.Firstweekcheck = firstweekcheck;
+        this.Secondweekcheck = secondweekcheck;
+        this.Thirdweekcheck = thirdweekcheck;
+        this.Forthweekcheck = forthweekcheck;
+    }
+
     @Override
     public String toString() {
         return year+"/"+month+"/"+day+" "+name+" money:"+money+" isPrivate:"+isPrivate+"\n";
     }
 
-    public static List<Pay> createTestListPays(int num){
-        List<Pay> pays = new ArrayList<>();
+    public static List<Student> createTestListStudents(int num){
+        List<Student> students = new ArrayList<>();
         for (int i =0;i<num;i++){
-            Pay pay = new Pay();
-            pay.setYear(2019);
-            pay.setMonth(3);
-            pay.setDay(13);
-            pay.setName("水果");
-            pay.setMoney(11);
-            pay.setPrivate(false);
-            pays.add(pay);
-            pay.save();
+            Student student = new Student();
+            student.setId("M0123456");
+            student.setName("匿名");
+            student.setGroup("0");
+            student.setCheck(0,0,0,0);
+            students.add(student);
+            student.save();
         }
-        return pays;
+        return students;
     }
 }
